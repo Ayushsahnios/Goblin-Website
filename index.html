@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon - Goblin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0d0d0d;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            color: white;
+            position: relative;
+        }
+
+        .container {
+            position: relative;
+            text-align: center;
+            z-index: 1; /* Ensure content is above the waves */
+        }
+
+        /* Character and Glow Effect */
+        .character {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            background: #0d0d0d;
+            border-radius: 50%;
+            margin: 0 auto;
+            box-shadow: 0 0 60px rgba(160, 32, 240, 0.8), 0 0 100px rgba(160, 32, 240, 0.6);
+            background-image: url('/Users/ayushsahni/Desktop/Documents/Projects/goblin website /Untitled_design_copy-removebg-preview.png'); /* Goblin image path */
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease; /* Smooth transition for scaling */
+        }
+
+        /* Hover Effect for Scaling Up the Goblin Image */
+        .character:hover {
+            transform: scale(1.2); /* Increase the size by 20% when hovered */
+        }
+
+        /* Background Wave Effect */
+        .wave-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 300px; /* Adjusted height for waves */
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .wave {
+            position: absolute;
+            bottom: 0;
+            width: 200%;
+            height: 150px;
+            background: rgba(160, 32, 240, 0.5); /* Purple wave color */
+            border-radius: 100% 100% 0 0;
+            animation: wave-animation 6s infinite ease-in-out;
+        }
+
+        .wave:nth-child(2) {
+            bottom: 30px;
+            height: 120px;
+            background: rgba(160, 32, 240, 0.3);
+            animation-duration: 8s;
+        }
+
+        .wave:nth-child(3) {
+            bottom: 60px;
+            height: 90px;
+            background: rgba(160, 32, 240, 0.2);
+            animation-duration: 10s;
+        }
+
+        .wave:nth-child(4) {
+            bottom: 90px;
+            height: 70px;
+            background: rgba(160, 32, 240, 0.1);
+            animation-duration: 12s;
+        }
+
+        /* Wave animations */
+        @keyframes wave-animation {
+            0% {
+                transform: translateX(0) translateY(0);
+            }
+            50% {
+                transform: translateX(-25px) translateY(10px);
+            }
+            100% {
+                transform: translateX(0) translateY(0);
+            }
+        }
+
+        /* Quirky 3D Coming Soon Text */
+        .coming-soon-text {
+            font-size: 3.5em;
+            font-family: 'Press Start 2P', cursive; /* Quirky font */
+            margin-top: 20px;
+            position: relative;
+            text-transform: uppercase;
+            color: #ffffff;
+            text-shadow: 
+                1px 1px 0 #A020F0,
+                2px 2px 0 #000,
+                3px 3px 10px rgba(160, 32, 240, 0.7);
+        }
+
+        /* Button with Glow Effect */
+        .notify-button {
+            background-color: #A020F0;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 0 20px rgba(160, 32, 240, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .notify-button:hover {
+            background-color: #8A2BE2;
+            box-shadow: 0 0 40px rgba(160, 32, 240, 1);
+        }
+
+        /* Floating Words Effect */
+        .floating-word {
+            position: absolute;
+            font-size: 1.2em;
+            color: #a9a9a9; /* Gray color */
+            opacity: 0;
+            animation: float-word 6s ease-in-out forwards;
+        }
+
+        @keyframes float-word {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(1);
+            }
+            20% {
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-150px) scale(1.2);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-300px) scale(0.8);
+            }
+        }
+
+        /* Footer Text - Made with ❤️ by Team Goblin */
+        .footer-text {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            color: #a9a9a9;
+            font-size: 0.9em;
+            font-family: 'Arial', sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wave-container">
+        <!-- Multiple Waves for Background Effect -->
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
+
+    <div class="container">
+        <!-- Goblin Character with Hover Effect -->
+        <div class="character"></div>
+
+        <!-- Coming Soon Text -->
+        <p class="coming-soon-text">Coming Soon</p>
+
+        <!-- Notify Button -->
+        <button class="notify-button">Notify Me</button>
+    </div>
+
+    <!-- Footer Text -->
+    <div class="footer-text">
+        Made with ❤️ by Team Goblin
+    </div>
+
+    <!-- JavaScript to Add Floating Words -->
+    <script>
+        const words = ["Magic", "Creativity", "Goblin", "Tech", "Fun", "Adventure", "Design", "Future"];
+        const body = document.body;
+
+        function createFloatingWord() {
+            const word = document.createElement('span');
+            word.classList.add('floating-word');
+            word.textContent = words[Math.floor(Math.random() * words.length)];
+
+            // Randomize position and size
+            word.style.left = Math.random() * 100 + 'vw';
+            word.style.top = Math.random() * 100 + 'vh';
+            word.style.fontSize = Math.random() * 1.5 + 1 + 'em';
+
+            body.appendChild(word);
+
+            // Remove word after animation
+            setTimeout(() => {
+                word.remove();
+            }, 6000);
+        }
+
+        // Generate words periodically
+        setInterval(createFloatingWord, 1000);
+    </script>
+
+</body>
+</html>
