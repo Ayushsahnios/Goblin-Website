@@ -23,10 +23,10 @@
         .container {
             position: relative;
             text-align: center;
-            z-index: 1; /* Ensure content is above the waves */
+            z-index: 1;
+            transition: transform 0.5s ease, scale 0.5s ease;
         }
 
-        /* Character and Glow Effect */
         .character {
             position: relative;
             width: 250px;
@@ -35,24 +35,22 @@
             border-radius: 50%;
             margin: 0 auto;
             box-shadow: 0 0 60px rgba(160, 32, 240, 0.8), 0 0 100px rgba(160, 32, 240, 0.6);
-            background-image: url('https://github.com/Ayushsahnios/Goblin-Website/blob/main/Untitled_design_copy-removebg-preview.png'); /* Goblin image path */
+            background-image: url('/Users/ayushsahni/Desktop/Documents/Projects/goblin website /Untitled_design_copy-removebg-preview.png');
             background-size: cover;
             background-position: center;
-            transition: transform 0.5s ease; /* Smooth transition for scaling */
+            transition: transform 0.5s ease;
         }
 
-        /* Hover Effect for Scaling Up the Goblin Image */
         .character:hover {
-            transform: scale(1.2); /* Increase the size by 20% when hovered */
+            transform: scale(1.2);
         }
 
-        /* Background Wave Effect */
         .wave-container {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 300px; /* Adjusted height for waves */
+            height: 300px;
             overflow: hidden;
             z-index: 0;
         }
@@ -62,7 +60,7 @@
             bottom: 0;
             width: 200%;
             height: 150px;
-            background: rgba(160, 32, 240, 0.5); /* Purple wave color */
+            background: rgba(160, 32, 240, 0.5);
             border-radius: 100% 100% 0 0;
             animation: wave-animation 6s infinite ease-in-out;
         }
@@ -88,7 +86,6 @@
             animation-duration: 12s;
         }
 
-        /* Wave animations */
         @keyframes wave-animation {
             0% {
                 transform: translateX(0) translateY(0);
@@ -101,10 +98,9 @@
             }
         }
 
-        /* Quirky 3D Coming Soon Text */
         .coming-soon-text {
             font-size: 3.5em;
-            font-family: 'Press Start 2P', cursive; /* Quirky font */
+            font-family: 'Press Start 2P', cursive;
             margin-top: 20px;
             position: relative;
             text-transform: uppercase;
@@ -115,7 +111,6 @@
                 3px 3px 10px rgba(160, 32, 240, 0.7);
         }
 
-        /* Button with Glow Effect */
         .notify-button {
             background-color: #A020F0;
             color: white;
@@ -134,11 +129,10 @@
             box-shadow: 0 0 40px rgba(160, 32, 240, 1);
         }
 
-        /* Floating Words Effect */
         .floating-word {
             position: absolute;
-            font-size: 1.2em;
-            color: #a9a9a9; /* Gray color */
+            font-size: 1.1em;
+            color: #a9a9a9;
             opacity: 0;
             animation: float-word 6s ease-in-out forwards;
         }
@@ -160,7 +154,6 @@
             }
         }
 
-        /* Footer Text - Made with ❤️ by Team Goblin */
         .footer-text {
             position: absolute;
             right: 20px;
@@ -169,37 +162,107 @@
             font-size: 0.9em;
             font-family: 'Arial', sans-serif;
         }
+
+        /* New About Us text and animation styles */
+        .container.about-active {
+            transform: translateY(-200px) scale(0.8);
+        }
+
+        .about-text {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .about-text.active {
+            display: block;
+            opacity: 1;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .signup-button {
+            background-color: #A020F0;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 0 20px rgba(160, 32, 240, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .signup-button:hover {
+            background-color: #8A2BE2;
+            box-shadow: 0 0 40px rgba(160, 32, 240, 1);
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
 
     <div class="wave-container">
-        <!-- Multiple Waves for Background Effect -->
         <div class="wave"></div>
         <div class="wave"></div>
         <div class="wave"></div>
         <div class="wave"></div>
     </div>
 
-    <div class="container">
-        <!-- Goblin Character with Hover Effect -->
+    <div class="container" id="main-container">
         <div class="character"></div>
-
-        <!-- Coming Soon Text -->
         <p class="coming-soon-text">Coming Soon</p>
-
-        <!-- Notify Button -->
-        <button class="notify-button">Notify Me</button>
+        <button class="notify-button" onclick="toggleAboutUs()">About Us</button>
     </div>
 
-    <!-- Footer Text -->
+    <div class="about-text" id="about-text">
+        <h2>Procrastination Goblin</h2>
+        <p>Your Cute but Ruthless Taskmaster Awaits!</p>
+        <p>Procrastination Goblin is here to keep you on track and hold you accountable like never before. Our app turns productivity into a game, mixing fun with relentless accountability to ensure you hit your goals—no excuses.</p>
+        <h3>Key Features:</h3>
+        <ul>
+            <li>Task Tracking with Consequences: Set tasks and receive relentless reminders, escalating penalties, and even public social consequences if you miss deadlines.</li>
+            <li>Embarrassing Post Penalties: Miss a deadline, and the Goblin will post an embarrassing photo to your social media—no backing out!</li>
+            <li>Hilarious Spam Alerts: From relentless texts to surprise phone calls, the Goblin keeps you on your toes with comical but aggressive reminders until your tasks are done.</li>
+            <li>Guardrails Against Cheating: No shortcuts here—progress is real, and there's no gaming the system.</li>
+            <li>Bet on Productivity & Win: Place bets for or against your friends’ productivity. Win real money as you stay engaged, with financial incentives keeping you active and accountable.</li>
+        </ul>
+        <button class="signup-button">Sign Up</button>
+    </div>
+
     <div class="footer-text">
         Made with ❤️ by Team Goblin
     </div>
 
-    <!-- JavaScript to Add Floating Words -->
     <script>
-        const words = ["Magic", "Creativity", "Goblin", "Tech", "Fun", "Adventure", "Design", "Future"];
+        const words = [
+            "The Taskmaster Students Love.",
+            "Real-Time Reminders, Zero Procrastination.",
+            "Task Completion, Gamified.",
+            "Deadline-Driven Accountability.",
+            "The Task Reminder You Can't Ignore.",
+            "Escalating Consequences for Missed Deadlines.",
+            "Bet on Yourself, Beat Procrastination.",
+            "Get it Done, or Face the Consequences!",
+            "You’ll Have So Much Fun, You Won’t Even Realize You’re not Procrastinating!",
+            "Outperform Your Peers and Crush Your To-Do List!",
+            "Get Competitive and Watch Procrastination Disappear!"
+        ];
         const body = document.body;
 
         function createFloatingWord() {
@@ -207,22 +270,29 @@
             word.classList.add('floating-word');
             word.textContent = words[Math.floor(Math.random() * words.length)];
 
-            // Randomize position and size
             word.style.left = Math.random() * 100 + 'vw';
             word.style.top = Math.random() * 100 + 'vh';
-            word.style.fontSize = Math.random() * 1.5 + 1 + 'em';
+            word.style.fontSize = Math.random() * 0.6 + 0.7 + 'em';
 
             body.appendChild(word);
 
-            // Remove word after animation
             setTimeout(() => {
                 word.remove();
-            }, 6000);
+            }, 11000);
         }
 
-        // Generate words periodically
         setInterval(createFloatingWord, 1000);
+
+        function toggleAboutUs() {
+            const mainContainer = document.getElementById('main-container');
+            const aboutText = document.getElementById('about-text');
+
+            // Toggle classes based on current state
+            mainContainer.classList.toggle('about-active');
+            aboutText.classList.toggle('active');
+        }
     </script>
 
 </body>
 </html>
+
